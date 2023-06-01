@@ -6,7 +6,9 @@ volumes:
 services:
   postgres:
     container_name: postgres
-    image: postgres
+    build:
+      context: .
+      dockerfile: Dockerfile
     restart: always
     environment:
       POSTGRES_PASSWORD: $POSTGRES_USER
