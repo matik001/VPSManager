@@ -1,0 +1,35 @@
+- name: Uploading and restarting containers
+  hosts: vps
+  become: yes
+
+  tasks:
+    - name: Load vars locally from secrets.yaml
+      ansible.builtin.include_vars:
+        file: secrets.yaml
+      delegate_to: localhost
+
+    - name: Creates containers directory
+      file:
+        path: "/home/{{ vps_username  }}/containers/"
+        state: directory
+
+    - name: Copy file with owner and permissions
+      copy:
+        src: ./images/
+        dest: /home/{{ vps_username  }}/containers/
+        owner: "{{ vps_username  }}"
+        group: "{{ vps_username  }}"
+        mode: '0644'
+
+    - name: Restart nginx container
+      shell:
+        cmd: "docker compose up --build --remove-orphans -d"
+        chdir: "/home/{{ vps_username  }}/containers/nginx"
+
+    - name: Restart postgres container
+      shell:
+        cmd: "docker compose up --build --remove-orphans -d"
+        chdir: "/home/{{ vps_username  }}/containers/postgres"
+      environment:
+        POSTGRES_USER: "{{ POSTGRES_USER }}"
+        POSTGRES_PASSWORD: "{{ POSTGRES_PASSWORD }}"

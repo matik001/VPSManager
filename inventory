@@ -1,0 +1,6 @@
+[vps]
+20.119.50.77
+
+[vps:vars]
+ansible_ssh_user=john
+vps_username=john
