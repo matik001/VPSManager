@@ -14,12 +14,13 @@
         state: directory
 
     - name: Copy file with owner and permissions
-      copy:
+      synchronize:
         src: ./images/
-        dest: /home/{{ vps_username  }}/containers/
-        owner: "{{ vps_username  }}"
-        group: "{{ vps_username  }}"
-        mode: "0644"
+        dest: /home/{{ vps_username }}/containers/
+        rsync_opts:
+          - "--chown={{ vps_username  }}:{{ vps_username  }}"
+          - "--recursive"
+          - "--delete"
 
     - name: Restart nginx container
       shell:
