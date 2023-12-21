@@ -19,12 +19,15 @@
         dest: /home/{{ vps_username  }}/containers/
         owner: "{{ vps_username  }}"
         group: "{{ vps_username  }}"
-        mode: '0644'
+        mode: "0644"
 
     - name: Restart nginx container
       shell:
         cmd: "docker compose up --build --remove-orphans -d"
         chdir: "/home/{{ vps_username  }}/containers/nginx"
+      environment:
+        SITE_URL: "{{ site_url }}"
+        CERT_EMAIL: "{{ cert_email }}"
 
     - name: Restart postgres container
       shell:
