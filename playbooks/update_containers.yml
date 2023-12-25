@@ -12,6 +12,8 @@
       file:
         path: "/home/{{ vps_username  }}/containers/"
         state: directory
+        owner: "{{ vps_username  }}"
+        group: "{{ vps_username  }}"
 
     - name: Copy file with owner and permissions
       synchronize:
@@ -20,7 +22,7 @@
         rsync_opts:
           - "--chown={{ vps_username  }}:{{ vps_username  }}"
           - "--recursive"
-          - "--delete"
+          # - "--delete"
 
     - name: Restart nginx container
       shell:

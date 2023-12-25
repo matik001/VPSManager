@@ -17,9 +17,9 @@
       lineinfile:
         path: /etc/sudoers
         state: present
-        regexp: '^%wheel'
-        line: '%wheel ALL=(ALL) NOPASSWD: ALL'
-        validate: 'visudo -cf %s'
+        regexp: "^%wheel"
+        line: "%wheel ALL=(ALL) NOPASSWD: ALL"
+        validate: "visudo -cf %s"
 
     - name: Creating new user
       user:
@@ -41,7 +41,14 @@
       lineinfile:
         path: /etc/ssh/sshd_config
         state: present
-        regexp: '^#?PermitRootLogin'
-        line: 'PermitRootLogin prohibit-password'
-        
+        regexp: "^#?PermitRootLogin"
+        line: "PermitRootLogin prohibit-password"
+
     - include_tasks: install/docker.yml
+
+    - name: Creates directory for static files
+      file:
+        path: "/home/{{ vps_username  }}/static/"
+        state: directory
+        owner: "{{ vps_username  }}"
+        group: "{{ vps_username  }}"

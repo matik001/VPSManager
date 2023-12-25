@@ -16,3 +16,4 @@ services:
     volumes:
       - ./files:/home/files
       - ./letsencrypt:/etc/letsencrypt
+      - ../../static/chess_frontend:/chess_frontend
