@@ -1,0 +1,12 @@
+- name: Initial configuration of Ubuntu VPS
+  hosts: vps
+  become: yes
+
+  tasks:
+    - name: Upload ssh keys
+      authorized_key:
+        user: "{{ vps_username }}"
+        state: present
+        key: "{{ lookup('file', item) }}"
+      with_fileglob:
+        - "../ssh_keys/*"
