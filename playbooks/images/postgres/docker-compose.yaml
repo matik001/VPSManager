@@ -17,3 +17,10 @@ services:
       - psql_volume:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+    networks:
+      - my_network
+
+networks:
+  proxynet:
+    name: my_network
+    driver: bridge

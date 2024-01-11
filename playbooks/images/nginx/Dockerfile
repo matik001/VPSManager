@@ -4,6 +4,6 @@ RUN pip3 install pip --upgrade
 RUN pip3 install certbot-nginx
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-CMD ["sh", "-c", "nginx ; certbot --nginx --noninteractive --agree-tos --cert-name matiklive -d bot.${SITE_URL} chess.${SITE_URL} -d url.${SITE_URL} -d files.${SITE_URL} -m ${CERT_EMAIL} ; nginx -s stop ; sleep 3 ; nginx -g 'daemon off;'"]
+CMD ["sh", "-c", "nginx ; certbot --nginx --noninteractive --agree-tos --cert-name matiklive -d bot.${SITE_URL} -d chess.${SITE_URL} -d url.${SITE_URL} -d files.${SITE_URL} -m ${CERT_EMAIL} ; nginx -s stop ; sleep 3 ; nginx -g 'daemon off;'"]
 
 

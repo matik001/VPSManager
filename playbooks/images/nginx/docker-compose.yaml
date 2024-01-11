@@ -17,4 +17,4 @@ services:
       - ./files:/home/files
       - ./letsencrypt:/etc/letsencrypt
       - ../../static/chess_frontend:/chess_frontend
-      - ../../static/superbot_frontend:/superbot_frontend
+      - ../../static/botmanager_frontend:/botmanager_frontend

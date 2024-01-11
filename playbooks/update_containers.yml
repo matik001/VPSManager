@@ -39,3 +39,16 @@
       environment:
         POSTGRES_USER: "{{ POSTGRES_USER }}"
         POSTGRES_PASSWORD: "{{ POSTGRES_PASSWORD }}"
+
+    - name: Restart rabbitmq container
+      shell:
+        cmd: "docker compose up --build --remove-orphans -d"
+        chdir: "/home/{{ vps_username  }}/containers/rabbitmq"
+      environment:
+        RABBITMQ_USER: "{{ RABBITMQ_LOGIN }}"
+        RABBITMQ_PASSWORD: "{{ RABBITMQ_PASSWORD }}"
+
+    - name: Restart selenium-grid container
+      shell:
+        cmd: "docker compose up --build --remove-orphans -d"
+        chdir: "/home/{{ vps_username  }}/containers/selenium-grid"
