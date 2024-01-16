@@ -9,6 +9,8 @@ services:
     shm_size: "2g"
     networks:
       - my-proxy-net  
+    restart: always
+
 networks:
   my-proxy-net:
     external:

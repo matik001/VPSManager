@@ -13,6 +13,8 @@ services:
       - "15672:15672"
     networks:
       - my-proxy-net  
+    restart: always
+
 networks:
   my-proxy-net:
     external:
