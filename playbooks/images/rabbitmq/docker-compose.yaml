@@ -9,6 +9,7 @@ services:
     ports:
       # rabbitmq server
       - "5672:5672"
+      - "5672"
       # Web interface
       - "15672:15672"
     networks:

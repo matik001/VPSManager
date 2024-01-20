@@ -1,0 +1,31 @@
+version: "3.1"
+
+volumes:
+  mysql_volume:
+
+services:
+  mysql:
+    container_name: mysql
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        MYSQL_USER: $MYSQL_USER
+
+    restart: always
+    environment:
+      MYSQL_USER: $MYSQL_USER
+      MYSQL_PASSWORD: $MYSQL_PASSWORD
+      MYSQL_ROOT_PASSWORD: $MYSQL_PASSWORD
+    volumes:
+      - mysql_volume:/var/lib/mysql
+    ports:
+      - "3306:3306"
+      - "3306"
+    networks:
+      - proxynet
+
+networks:
+  proxynet:
+    name: my_network
+    driver: bridge

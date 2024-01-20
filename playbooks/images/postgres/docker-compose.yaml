@@ -13,10 +13,12 @@ services:
     environment:
       POSTGRES_USER: $POSTGRES_USER
       POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+      POSTGRES_HOST_AUTH_METHOD: md5
     volumes:
       - psql_volume:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+      - "5432"
     networks:
       - proxynet
 
