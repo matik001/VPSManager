@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 services:
   selenium:
     container_name: "selenium"
@@ -9,10 +9,10 @@ services:
       - "7900:7900"
     shm_size: "2g"
     networks:
-      - my-proxy-net  
+      - my-proxy-net
     restart: always
 
 networks:
   my-proxy-net:
-    external:
-      name: my_network
+    name: my_network
+    external: true

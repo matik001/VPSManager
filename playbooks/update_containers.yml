@@ -32,14 +32,6 @@
         SITE_URL: "{{ site_url }}"
         CERT_EMAIL: "{{ cert_email }}"
 
-    - name: Restart postgres container
-      shell:
-        cmd: "docker compose up --build --remove-orphans -d"
-        chdir: "/home/{{ vps_username  }}/containers/postgres"
-      environment:
-        POSTGRES_USER: "{{ POSTGRES_USER }}"
-        POSTGRES_PASSWORD: "{{ POSTGRES_PASSWORD }}"
-
     - name: Restart mysql container
       shell:
         cmd: "docker compose up --build --remove-orphans -d"
@@ -47,6 +39,14 @@
       environment:
         MYSQL_USER: "{{ MYSQL_USER }}"
         MYSQL_PASSWORD: "{{ MYSQL_PASSWORD }}"
+
+    - name: Restart postgres container
+      shell:
+        cmd: "docker compose up --build --remove-orphans -d"
+        chdir: "/home/{{ vps_username  }}/containers/postgres"
+      environment:
+        POSTGRES_USER: "{{ POSTGRES_USER }}"
+        POSTGRES_PASSWORD: "{{ POSTGRES_PASSWORD }}"
 
     - name: Restart rabbitmq container
       shell:

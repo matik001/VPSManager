@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 services:
   rabbitmq:
     container_name: rabbitmq
@@ -13,10 +13,10 @@ services:
       # Web interface
       - "15672:15672"
     networks:
-      - my-proxy-net  
+      - my-proxy-net
     restart: always
 
 networks:
   my-proxy-net:
-    external:
-      name: my_network
+    name: my_network
+    external: true
