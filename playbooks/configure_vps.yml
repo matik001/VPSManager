@@ -3,6 +3,11 @@
   become: yes
 
   tasks:
+    - name: Load vars locally from secrets.yaml
+      ansible.builtin.include_vars:
+        file: secrets.yaml
+      delegate_to: localhost
+
     - name: Update all packages
       apt:
         update_cache: yes
@@ -52,3 +57,15 @@
         state: directory
         owner: "{{ vps_username  }}"
         group: "{{ vps_username  }}"
+
+    - name: Creates directories for static files
+      file:
+        path: "/home/{{ vps_username }}/static/{{ item }}"
+        state: directory
+        owner: "{{ vps_username }}"
+        group: "{{ vps_username }}"
+      loop:
+        - botmanager_frontend
+        - chess_frontend
+
+    - include_tasks: install/wireguard_config.yml

@@ -1,0 +1,11 @@
+# {{ ansible_managed }}
+[Interface]
+Address = 10.0.0.1/24
+ListenPort = 51820
+PrivateKey = {{ WIREGUARD_SERVER_PRIVKEY }}
+PostUp = iptables -t nat -I POSTROUTING -o enp1s0 -j MASQUERADE
+PreDown = iptables -t nat -D POSTROUTING -o enp1s0 -j MASQUERADE
+
+[Peer]
+PublicKey = {{ WIREGUARD_CLIENT1_PUB }}
+AllowedIPs = 10.0.0.2/32

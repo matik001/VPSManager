@@ -1,0 +1,8 @@
+vps:
+  hosts:
+    192.168.100.15:
+ 
+    ansible_ssh_user: john
+    vps_username: john
+    site_url: matik.live
+    cert_email: mateusz.kisiel.mk@gmail.com
