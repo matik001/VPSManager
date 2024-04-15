@@ -68,4 +68,15 @@
         - botmanager_frontend
         - chess_frontend
 
+- name: Install wireguard
+  hosts: wireguard
+  become: yes
+  tasks:
     - include_tasks: install/wireguard_config.yml
+
+
+# - name: Install prometheus main
+#   hosts: prometheus_main
+#   become: yes
+#   tasks:
+#     - include_tasks: install/prometheus_main.yml

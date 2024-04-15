@@ -7,8 +7,17 @@ vps:
     site_url: matik.live
     cert_email: mateusz.kisiel.mk@gmail.com
 
-vpn:
+wireguard:
   hosts:
     matik.ddns.net:
   vars:
     ansible_ssh_user: john
+    vps_username: john
+
+prometheus_main:
+  hosts:
+    matik.ddns.net:
+  vars:
+    ansible_ssh_user: john
+    vps_username: john
+  
