@@ -8,6 +8,10 @@
         file: secrets.yaml
       delegate_to: localhost
 
+    - name: Ensure the correct timezone is configured
+      timezone:
+        name: Europe/Warsaw
+
     - name: Update all packages
       apt:
         update_cache: yes
@@ -30,7 +34,7 @@
       user:
         name: "{{ vps_username }}"
         comment: Creating new user
-        groups: wheel
+        groups: wheel,docker
         shell: /bin/bash
         create_home: yes
 
@@ -49,7 +53,10 @@
         regexp: "^#?PermitRootLogin"
         line: "PermitRootLogin prohibit-password"
 
-    - include_tasks: install/docker.yml
+    - name: Install pip3
+      apt:
+        name: python3-pip
+        state: present
 
     - name: Creates directory for static files
       file:
@@ -73,8 +80,6 @@
   become: yes
   tasks:
     - include_tasks: install/wireguard_config.yml
-
-
 # - name: Install prometheus main
 #   hosts: prometheus_main
 #   become: yes

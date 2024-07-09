@@ -60,3 +60,8 @@
       shell:
         cmd: "docker compose up --build --remove-orphans -d"
         chdir: "/home/{{ vps_username  }}/containers/selenium-grid"
+
+    - name: Restart ledbackend container
+      shell:
+        cmd: "docker compose up --build --remove-orphans -d"
+        chdir: "/home/{{ vps_username  }}/containers/ledbackend"

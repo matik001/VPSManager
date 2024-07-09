@@ -9,3 +9,8 @@ PreDown = iptables -t nat -D POSTROUTING -o {{ WIREGUARD_SERVER_INTERFACE }} -j 
 [Peer]
 PublicKey = {{ WIREGUARD_CLIENT1_PUB }}
 AllowedIPs = 10.0.0.2/32
+
+
+[Peer]
+PublicKey = {{ WIREGUARD_CLIENT2_PUB }}
+AllowedIPs = 10.0.0.3/32

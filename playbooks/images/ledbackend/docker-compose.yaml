@@ -1,0 +1,17 @@
+version: "3.1"
+
+services:
+  ledbackend:
+    container_name: ledbackend
+    image: mateuszkkkk/ledbackend
+    restart: always
+    networks:
+      - proxynet
+    ports:
+      - "6767:6767"
+      - "6767"
+
+networks:
+  proxynet:
+    name: my_network
+    driver: bridge
