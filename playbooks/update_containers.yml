@@ -63,5 +63,5 @@
 
     - name: Restart ledbackend container
       shell:
-        cmd: "docker compose up --build --remove-orphans -d"
+        cmd: "docker compose up --build --remove-orphans -d --pull always"
         chdir: "/home/{{ vps_username  }}/containers/ledbackend"
