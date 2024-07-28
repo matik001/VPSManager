@@ -10,7 +10,8 @@ services:
     ports:
       - "6767:6767"
       - "6767"
-
+    volumes:
+      - .env:/code/app/.env:ro
 networks:
   proxynet:
     name: my_network
