@@ -65,3 +65,15 @@
       shell:
         cmd: "docker compose up --build --remove-orphans -d --pull always"
         chdir: "/home/{{ vps_username  }}/containers/ledbackend"
+
+
+    - name: Restart mqtt container
+      shell:
+        cmd: "docker compose up --build --remove-orphans -d"
+        chdir: "/home/{{ vps_username  }}/containers/mqtt"
+
+
+    - name: Restart homeassistant container
+      shell:
+        cmd: "docker compose up --build --remove-orphans -d"
+        chdir: "/home/{{ vps_username  }}/containers/homeassistant"
