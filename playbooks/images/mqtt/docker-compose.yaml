@@ -5,6 +5,8 @@ services:
     image: eclipse-mosquitto:latest
     container_name: mqtt_broker
     restart: unless-stopped
+    networks:
+      - proxynet
     ports:
       - "1883:1883" # Port MQTT
       - "9001:9001" # Port WebSocket (opcjonalnie)
@@ -16,3 +18,8 @@ services:
 volumes:
   mosquitto_data:
   mosquitto_log:
+
+networks:
+  proxynet:
+    name: my_network
+    external: true

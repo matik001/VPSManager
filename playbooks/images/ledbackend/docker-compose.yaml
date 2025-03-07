@@ -4,15 +4,15 @@ services:
   ledbackend:
     container_name: ledbackend
     image: mateuszkkkk/ledbackend
-    restart: always
+    restart: unless-stopped
     networks:
       - proxynet
     ports:
       - "6767:6767"
-      - "6767"
     volumes:
       - .env:/code/app/.env:ro
+
 networks:
   proxynet:
     name: my_network
-    driver: bridge
+    external: true
