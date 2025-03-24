@@ -61,16 +61,15 @@
         cmd: "docker compose up --build --remove-orphans -d"
         chdir: "/home/{{ vps_username  }}/containers/selenium-grid"
 
-    - name: Restart ledbackend container
-      shell:
-        cmd: "docker compose up --build --remove-orphans -d --pull always"
-        chdir: "/home/{{ vps_username  }}/containers/ledbackend"
-
-
     - name: Restart mqtt container
       shell:
         cmd: "docker compose up --build --remove-orphans -d"
         chdir: "/home/{{ vps_username  }}/containers/mqtt"
+
+    - name: Restart ledbackend container
+      shell:
+        cmd: "docker compose up --build --remove-orphans -d --pull always"
+        chdir: "/home/{{ vps_username  }}/containers/ledbackend"
 
 
     - name: Restart homeassistant container
